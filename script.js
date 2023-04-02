@@ -77,3 +77,29 @@ function keydownAction(event) {
     //document.getElementById("wrong").textContent = "Wrong Guess";
   }
 }
+
+function timeRemaining() {
+  var timeleft = 10;
+
+  var timeInterval = setInterval(function () {
+    timerEl.textContent = "testing";
+    if (checkWin() === true) {
+      console.log("you win!!!");
+      gameInProgress = false;
+      timerEl.textContent = "You win! Click Start Game to continue";
+      clearInterval(timeInterval);
+      console.log(win + "wins");
+      winDisplay.textContent = win;
+      return;
+    }
+
+    timerEl.textContent = timeleft + " seconds remaining";
+    timeleft--;
+    if (timeleft === -1) {
+      clearInterval(timeInterval);
+      timerEl.textContent = "Time's up!";
+      loss++;
+      lossDisplay.textContent = loss;
+    }
+  }, 1000);
+}
