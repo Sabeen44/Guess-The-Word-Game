@@ -41,6 +41,19 @@ var blanks;
 win = 0;
 loss = 0;
 
+button.addEventListener("click", function () {
+  rightGuess = [];
+  randomWord = words[Math.floor(Math.random() * words.length)];
+  strToArr = randomWord.split("");
+  blanks = new Array(strToArr.length).fill("_");
+  console.log(strToArr);
+  console.log(blanks);
+  document.getElementById("blanks").textContent = blanks.join(" ");
+  gameInProgress = true;
+  document.addEventListener("keydown", keydownAction);
+  timeRemaining();
+});
+
 function keydownAction(event) {
   console.log(event);
 
