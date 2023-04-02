@@ -1,8 +1,23 @@
+//global variable
 var timerEl = document.getElementById("timer");
 var winDisplay = document.getElementById("winDisplay");
 var lossDisplay = document.getElementById("lossDisplay");
 var button = document.getElementById("start-button");
 
+var randomWord;
+
+var strToArr;
+
+var wrongGuess = [];
+var rightGuess = [];
+var gameInProgress = false;
+
+var blanks;
+
+win = 0;
+loss = 0;
+
+//array of words to be guessed
 var words = [
   "gold",
   "chess",
@@ -28,19 +43,16 @@ var words = [
   "inside",
 ];
 
-var randomWord;
-
-var strToArr;
-
-var wrongGuess = [];
-var rightGuess = [];
-var gameInProgress = false;
-
-var blanks;
-
-win = 0;
-loss = 0;
-
+//check if length of array with correct guesses is equal to length of the blank array to determine win
+function checkWin() {
+  if (rightGuess.length === blanks.length) {
+    win++;
+    return true;
+  } else {
+    return false;
+  }
+}
+//click start to generate random word. random word(string) changed to an array. blank array created. eventlistner added for keypress. called timer function
 button.addEventListener("click", function () {
   rightGuess = [];
   randomWord = words[Math.floor(Math.random() * words.length)];
@@ -54,6 +66,7 @@ button.addEventListener("click", function () {
   timeRemaining();
 });
 
+//change key pressed to lowecase.check if key press is in the random word array.find the index of the key in the array. add the key to blank array at the correct index.push the correct key to rightguess array.textContent to appear on the webpage .Incorrect key pushed to wrong array
 function keydownAction(event) {
   console.log(event);
 
@@ -74,10 +87,27 @@ function keydownAction(event) {
   } else {
     wrongGuess.push(keyPress);
     console.log(wrongGuess);
-    //document.getElementById("wrong").textContent = "Wrong Guess";
   }
 }
 
+//localstorage
+function renderWinsLosses() {
+  var wins = localStorage.getItem("wins");
+  var losses = localStorage.getItem("losses");
+  if (!wins || !losses) {
+    return;
+  }
+}
+
+winDisplay.textContent = win;
+lossDisplay.textContent = loss;
+
+localStorage.setItem("wins", win);
+localStorage.setItem("losses", loss);
+
+renderWinsLosses();
+
+//timer is cleaered with a win or when time's up. player can restart by clicking on start button
 function timeRemaining() {
   var timeleft = 10;
 
