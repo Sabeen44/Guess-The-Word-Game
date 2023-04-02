@@ -8,7 +8,6 @@ var randomWord;
 
 var strToArr;
 
-var wrongGuess = [];
 var rightGuess = [];
 var gameInProgress = false;
 
@@ -72,7 +71,7 @@ function keydownAction(event) {
 
   if (gameInProgress === false) return;
   var keyPress = event.key.toLowerCase();
-  if (strToArr.includes(keyPress)) {
+  if (strToArr.includes(keyPress) && !rightGuess.includes(keyPress)) {
     var index = strToArr.indexOf(keyPress);
     console.log(index + " index of the keypress in the strToArr array ");
     while (index !== -1) {
@@ -84,9 +83,6 @@ function keydownAction(event) {
     console.log(blanks);
     document.getElementById("blanks").textContent = blanks.join(" ");
     console.log(rightGuess);
-  } else {
-    wrongGuess.push(keyPress);
-    console.log(wrongGuess);
   }
 }
 
@@ -107,7 +103,7 @@ localStorage.setItem("losses", loss);
 
 renderWinsLosses();
 
-//timer is cleaered with a win or when time's up. player can restart by clicking on start button
+//timer is cleared with a win or when time's up. player can restart by clicking on start button
 function timeRemaining() {
   var timeleft = 20;
 
