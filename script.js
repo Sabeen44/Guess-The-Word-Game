@@ -109,14 +109,14 @@ renderWinsLosses();
 
 //timer is cleaered with a win or when time's up. player can restart by clicking on start button
 function timeRemaining() {
-  var timeleft = 10;
+  var timeleft = 20;
 
   var timeInterval = setInterval(function () {
     timerEl.textContent = "testing";
     if (checkWin() === true) {
       console.log("you win!!!");
       gameInProgress = false;
-      timerEl.textContent = "You win! Click Start Game to continue";
+      timerEl.textContent = "You win! Click 'Start Game' to continue";
       clearInterval(timeInterval);
       console.log(win + "wins");
       winDisplay.textContent = win;
