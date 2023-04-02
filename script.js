@@ -40,3 +40,27 @@ var blanks;
 
 win = 0;
 loss = 0;
+
+function keydownAction(event) {
+  console.log(event);
+
+  if (gameInProgress === false) return;
+  var keyPress = event.key.toLowerCase();
+  if (strToArr.includes(keyPress)) {
+    var index = strToArr.indexOf(keyPress);
+    console.log(index + " index of the keypress in the strToArr array ");
+    while (index !== -1) {
+      blanks.splice(index, 1, keyPress);
+      rightGuess.push(keyPress);
+      index = strToArr.indexOf(keyPress, index + 1);
+    }
+
+    console.log(blanks);
+    document.getElementById("blanks").textContent = blanks.join(" ");
+    console.log(rightGuess);
+  } else {
+    wrongGuess.push(keyPress);
+    console.log(wrongGuess);
+    //document.getElementById("wrong").textContent = "Wrong Guess";
+  }
+}
