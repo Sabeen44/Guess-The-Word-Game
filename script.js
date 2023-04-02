@@ -105,7 +105,7 @@ renderWinsLosses();
 
 //timer is cleared with a win or when time's up. player can restart by clicking on start button
 function timeRemaining() {
-  var timeleft = 20;
+  var timeleft = 10;
 
   var timeInterval = setInterval(function () {
     timerEl.textContent = "testing";
