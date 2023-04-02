@@ -112,7 +112,7 @@ function timeRemaining() {
     if (checkWin() === true) {
       console.log("you win!!!");
       gameInProgress = false;
-      timerEl.textContent = "You win! Click 'Start Game' to continue";
+      timerEl.textContent = "You win! Click 'Start Game' to continue playing";
       clearInterval(timeInterval);
       console.log(win + "wins");
       winDisplay.textContent = win;
@@ -123,7 +123,8 @@ function timeRemaining() {
     timeleft--;
     if (timeleft === -1) {
       clearInterval(timeInterval);
-      timerEl.textContent = "Time's up!";
+      timerEl.textContent =
+        "Time's up! Click 'Start Game' to continue playing ";
       loss++;
       lossDisplay.textContent = loss;
     }
